@@ -1,4 +1,4 @@
-from dungeon_draw import cls
+from old_dungeon_draw import cls
 from colorama import init, Fore, Back, Style
 from dungeon_save import save_file
 import re
@@ -48,8 +48,8 @@ class Game:
 
 if __name__ == '__main__':
     import random
-    from dungeon_rooms import *
-    from dungeon_draw import colors_no_black, Draw
+    from dungeon_pictures import *
+    from old_dungeon_draw import colors_no_black, Draw
 
     game = Game(enter_you_name_5_1, enter_you_name_5_2, text_0, text_0_1, None)
     game.change_draw()

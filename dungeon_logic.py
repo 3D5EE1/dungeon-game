@@ -1,4 +1,4 @@
-from dungeon_draw import cls
+from old_dungeon_draw import cls
 from colorama import init, Fore, Back, Style
 import time
 import os
@@ -39,8 +39,8 @@ def game_exit():
 
 if __name__ == '__main__':
     # init()
-    from dungeon_draw import Draw, colors_no_black
-    from dungeon_rooms import draw_skull, draw_start_menu, draw_game
+    from old_dungeon_draw import Draw, colors_no_black
+    from dungeon_pictures import draw_skull, draw_start_menu, draw_game
     import random
     random_color1 = random.choice(colors_no_black)
     random_color2 = random.choice(colors_no_black)
