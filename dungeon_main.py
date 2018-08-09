@@ -1,11 +1,13 @@
+from colorama import init, Fore, Back, Style
 from dungeon_draw import picture, Draw
-from dungeon_pictures import draw_skull
+from dungeon_pictures import figure
+
 
 
 def run_game():
     run = True
     while run:
-        game = Draw(picture(draw_skull), None, draw_skull['canvas2a'][1:])
+        game = Draw(picture(figure(0)), None, None)
         game.draw()
         run = False
 

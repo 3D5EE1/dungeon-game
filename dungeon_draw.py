@@ -10,13 +10,16 @@ colors_back = (Back.BLACK, Back.RED, Back.GREEN, Back.YELLOW, Back.BLUE, Back.MA
 colors_style = (Style.DIM, Style.NORMAL, Style.BRIGHT)
 
 
-def picture(change):
+def picture(change, append_original_picture=None):
     """СШК (Стандартная шаблонная консрукция)  (с) ваха ^_^,  функция  задает  изначальные паратметры полей
     отрисовки рамки и картинок, ее можно изменять добавляя нужные поля.  Для уменьшеня размера достаточно в
-    классе Draw() в аргументе size_picture указать нужное значение, для увеличения добавить новые фрагменты
+    классе Draw() в аргументе "size_picture" указать нужное значение, для добавления новых фрагментов нужно
+    передать словарь с дополнительными полями в агрумент picture(append_original_picture), ниже указано как
+    должены выглядить новые фрагменты.
 
-    пример каким должен быть change: {'frame1a': ['╔', Fore.LIGHTCYAN_EX, Back.BLACK, ], }
-    -ключ это поле "СШК", которое хотим заменить.
+    пример каким должен быть change или append_original_picture:
+                                                      {'frame1a': ['╔', Fore.CYAN, Back.BLACK, ], }
+    -ключ это поле "СШК", которое хотим заменить (для change) или добавить (для append_original_picture)
     -значение ключа это список:
                              -первым его аргументом будет то каким вы хотите видеть содержание  строки поля
                               отрисовки, обращайте внимание на длину остальных полей, иначе результат может
@@ -66,6 +69,12 @@ def picture(change):
          'frame1v': '╚', 'canvas1v': '', 'canvas2v': '════════════════════════════════════════════', 'canvas3v': '',
          'frame2v': '═', 'canvas4v': '══════════════════════════════════════════════════════', 'frame3v': '╝\n', }
 
+    if append_original_picture is None:
+        pass
+    else:
+        for key, vol in append_original_picture.items():
+            original_picture[key] = vol
+
     original_numbers = []
     original_frames = []
 
@@ -88,7 +97,7 @@ def picture(change):
 class Draw:
     """клас отрисовки 'псевдографики'
     draw_picture - принимает  функцию  picture(change)  с  измененными  полями, если change ровняется None, передается
-    изначальная модель.
+    изначальная модель, picture(append_original_picture) добавляет новые фрагменты.
     size_picture - "обрезает" СШК переданную в функции picture(change), принимает число строк, которые вы хотите отоб-
     разить, строки от 0 до переданного заначение.
     color_frame  - принимает список цвета и фона для рамки нашей графики, None принимает рандомный цвет на черном фоне
@@ -114,12 +123,12 @@ class Draw:
         return length_first_line
 
     def draw(self):
-        """основной метод отрисовки нашей графики, принимает положительные числа или "None" тем самым можно "оберезать"
+        """основной метод отрисовки нашей графики, принимает положительные числа или "None" тем самым можно "обрезать"
            нашу СШК. None передаст размеры СШК в изначальном виде, при этом все внесенные измения сохраняются. """
 
         if self.size_picture is None:
             self.new_keys = self.draw_picture[1]
-        elif self.size_picture > len(self.draw_picture[1])/self.picture_size()[1] or self.size_picture < 0:
+        elif self.size_picture > len(self.draw_picture[1]) / self.picture_size()[1] or self.size_picture < 0:
             return print(
                 Fore.LIGHTWHITE_EX + Back.MAGENTA
                 + f'второй аргумент Draw() "size_picture" не может быть меньше 0 или больше '
@@ -131,8 +140,14 @@ class Draw:
         for key in self.new_keys:
             if key in self.draw_picture[3]:
                 print(self.draw_picture[3][key][0] + self.draw_picture[3][key][1] + self.draw_picture[0][key], end='')
+
             elif self.color_frame is None:
-                print(self.draw_picture[3]['None'][0]+self.draw_picture[3]['None'][1]+self.draw_picture[0][key], end='')
+                if 'canvas2a'in self.draw_picture[3]:
+                    print(self.draw_picture[3]['canvas2a'][0]
+                          + self.draw_picture[3]['canvas2a'][1] + self.draw_picture[0][key], end='')
+                else:
+                    print(self.draw_picture[3]['None'][0]
+                          + self.draw_picture[3]['None'][1] + self.draw_picture[0][key], end='')
             else:
                 print(self.color_frame[0] + self.color_frame[1] + self.draw_picture[0][key], end='')
 
@@ -143,50 +158,38 @@ class Draw:
 
 
 if __name__ == '__main__':
-
-    b = {'frame1b': ['#', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas2b': ['                                       место', Fore.GREEN, Back.BLACK],
-         'frame2b': [' ', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas4b': ['для проверки                                          ', Fore.GREEN, Back.BLACK],
-         'frame3b': ['#\n', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame1l': ['╚', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas2l': ['════════════════════════════════════════════', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame2l': ['═', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas4l': ['══════════════════════════════════════════════════════', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame3l': ['╝\n', Fore.LIGHTCYAN_EX, Back.BLACK]}
-
-    a = Draw(picture(b), -11, b['frame1b'][1:])
-    a.window_size()
-    a.draw()
-
-    m = {'frame1c': ['#', Fore.LIGHTMAGENTA_EX, Back.BLACK],
-         'canvas2c': ['                                       место', Fore.GREEN, Back.BLACK],
-         'frame2c': [' ', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas4c': ['для проверки                                          ', Fore.GREEN, Back.BLACK],
-         'frame3c': ['#\n', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame1m': ['╚', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas2m': ['════════════════════════════════════════════', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame2m': ['═', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas4m': ['══════════════════════════════════════════════════════', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'frame3m': ['╝\n', Fore.LIGHTCYAN_EX, Back.BLACK]}
-
-    n = Draw(picture(m), 12, m['frame1c'][1:])
-    n.draw()
-
-    c = {'frame1m': ['#', Fore.LIGHTYELLOW_EX, Back.BLACK],
-         'canvas2m': ['                                       место', Fore.GREEN, Back.BLACK],
-         'frame2m': [' ', Fore.LIGHTCYAN_EX, Back.BLACK],
-         'canvas4m': ['для проверки                                          ', Fore.GREEN, Back.BLACK],
-         'frame3m': ['#\n', Fore.LIGHTCYAN_EX, Back.BLACK],}
-
-    k = Draw(picture(c), None, c['frame1m'][1:])
-    k.draw()
-
-    t = Draw(picture(None), None, None)
-    t.draw()
-
     from dungeon_pictures import draw_skull
 
-    g = Draw(picture(draw_skull), None, draw_skull['canvas2a'][1:])
-    g.draw()
+    a = {'frame1w': '╚', 'canvas1w': '', 'canvas2w': '═══════════════W════════════════════════════', 'canvas3w': '',
+         'frame2w': '═', 'canvas4w': '═════════════════════════════w════════════════════════', 'frame3w': '╝\n',
+         'frame1x': '╚', 'canvas1x': '', 'canvas2x': '═══════════X════════════════════════════════', 'canvas3x': '',
+         'frame2x': '═', 'canvas4x': '═══════════════════════════════x══════════════════════', 'frame3x': '╝\n',
+         'frame1y': '╚', 'canvas1y': '', 'canvas2y': '══════════════Y═════════════════════════════', 'canvas3y': '',
+         'frame2y': '═', 'canvas4y': '════════════════════════════════y═════════════════════', 'frame3y': '╝\n',
+         'frame1z': '╚', 'canvas1z': '', 'canvas2z': '═════════════Z══════════════════════════════', 'canvas3z': '',
+         'frame2z': '═', 'canvas4z': '═════════════════════════════════z════════════════════', 'frame3z': '╝\n', }
 
+    a1 = Draw(picture(draw_skull, a), None, None)
+    a1.window_size()
+    print('\na1')
+    a1.draw()
+
+    a2 = Draw(picture(draw_skull), -1, None)
+    print('\na2')
+    a2.draw()
+
+    a3 = Draw(picture(draw_skull), 21, draw_skull['canvas2a'][1:])
+    print('\na3')
+    a3.draw()
+
+    a4 = Draw(picture(draw_skull), 10, draw_skull['canvas2a'][1:])
+    print('\na4')
+    a4.draw()
+
+    a5 = Draw(picture(draw_skull), None, draw_skull['canvas2a'][1:])
+    print('\na5')
+    a5.draw()
+
+    a6 = Draw(picture(draw_skull), None, None)
+    print('\na6')
+    a6.draw()
