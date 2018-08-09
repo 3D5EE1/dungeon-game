@@ -1,17 +1,15 @@
-from colorama import init, Fore, Back, Style
-from dungeon_draw import colors_no_black, picture, Draw
-from dungeon_pictures import draw_skull, draw_skull_text
-import random
+from dungeon_draw import picture, Draw
+from dungeon_pictures import draw_skull
 
 
-def rungame():
+def run_game():
     run = True
     while run:
-        random_color1 = random.choice(colors_no_black)
-        random_color2 = random.choice(colors_no_black)
-        game = Draw(picture(), None)
+        game = Draw(picture(draw_skull), None, draw_skull['canvas2a'][1:])
+        game.draw()
+        run = False
 
 
 if __name__ == '__main__':
     # init()
-    rungame()
+    run_game()
