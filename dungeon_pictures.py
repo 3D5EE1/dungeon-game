@@ -10,7 +10,8 @@ def figure(number):
     """('frame_color', 'frame_back', 'canvas1_color', 'canvas1_back', 'canvas2_color', 'canvas2_back')"""
 
     color = [
-        (Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK)
+        (Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK),
+        (Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK),
     ]
 
     draw_skull = \
@@ -38,7 +39,27 @@ def figure(number):
          'canvas4m': ['                 "3" - выйти                          ', color[number][4], color[number][5], ],
          'canvas4t': ['                                              (c)rypy ', Fore.BLUE, color[number][5], ], }
 
-    pictures = [draw_skull]
+    draw_skull2 = \
+        {'canvas2a': ['════════════════════════════════════════════', color[number][2], color[number][3], ],
+         'canvas2c': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2d': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2e': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2f': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2g': ['############################################', color[number][2], color[number][3], ],
+         'canvas2h': ['############################################', color[number][2], color[number][3], ],
+         'canvas2i': ['############################################', color[number][2], color[number][3], ],
+         'canvas2k': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2l': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2m': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2n': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2o': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2p': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2q': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2r': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2s': ['                   ######                   ', color[number][2], color[number][3], ],
+         'canvas2t': ['                   ######                   ', color[number][2], color[number][3], ],}
+
+    pictures = [draw_skull, draw_skull2]
 
     return pictures[number]
 

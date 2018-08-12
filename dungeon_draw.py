@@ -73,7 +73,10 @@ def picture(change, append_original_picture=None):
         pass
     else:
         for key, vol in append_original_picture.items():
-            original_picture[key] = vol
+            if key in change:
+                change[key] = vol
+            else:
+                original_picture[key] = vol
 
     original_numbers = []
     original_frames = []
@@ -110,6 +113,7 @@ class Draw:
         self.color_frame = color_frame
 
     def picture_size(self):
+        """определяет размеры холста"""
         length_first_line = [0, 0, 0]
 
         for key, vol in self.draw_picture[0].items():
@@ -158,9 +162,9 @@ class Draw:
 
 
 if __name__ == '__main__':
-    from dungeon_pictures import draw_skull
+    from dungeon_pictures import figure
 
-    a = {'frame1w': '╚', 'canvas1w': '', 'canvas2w': '═══════════════W════════════════════════════', 'canvas3w': '',
+    a = {'frame1w': '╚', 'canvas1w': '', 'canvas2w': '═══════════════W══════W═════════════════════', 'canvas3w': '',
          'frame2w': '═', 'canvas4w': '═════════════════════════════w════════════════════════', 'frame3w': '╝\n',
          'frame1x': '╚', 'canvas1x': '', 'canvas2x': '═══════════X════════════════════════════════', 'canvas3x': '',
          'frame2x': '═', 'canvas4x': '═══════════════════════════════x══════════════════════', 'frame3x': '╝\n',
@@ -169,27 +173,43 @@ if __name__ == '__main__':
          'frame1z': '╚', 'canvas1z': '', 'canvas2z': '═════════════Z══════════════════════════════', 'canvas3z': '',
          'frame2z': '═', 'canvas4z': '═════════════════════════════════z════════════════════', 'frame3z': '╝\n', }
 
-    a1 = Draw(picture(draw_skull, a), None, None)
+    a1 = Draw(picture(figure(0), a), None, None)
     a1.window_size()
-    print('\na1')
+    print(Fore.WHITE + Back.BLACK + '\ntest1, добавление дополнительных полей')
     a1.draw()
 
-    a2 = Draw(picture(draw_skull), -1, None)
-    print('\na2')
+    a2 = Draw(picture(figure(0)), -1, None)
+    print(Fore.WHITE + Back.BLACK + '\ntest2, неверные параметра "обрезания" шаблона')
     a2.draw()
 
-    a3 = Draw(picture(draw_skull), 21, draw_skull['canvas2a'][1:])
-    print('\na3')
+    a3 = Draw(picture(figure(0)), 21, figure(0)['canvas2a'][1:])
+    print(Fore.WHITE + Back.BLACK + '\ntest3, неверные параметра "обрезания" шаблона')
     a3.draw()
 
-    a4 = Draw(picture(draw_skull), 10, draw_skull['canvas2a'][1:])
-    print('\na4')
+    a4 = Draw(picture(figure(0)), 10, figure(0)['canvas2a'][1:])
+    print(Fore.WHITE + Back.BLACK + '\ntest4, верные параметра "обрезания" шаблона')
     a4.draw()
 
-    a5 = Draw(picture(draw_skull), None, draw_skull['canvas2a'][1:])
-    print('\na5')
+    a5 = Draw(picture(figure(0)), None, figure(0)['canvas4l'][1:])
+    print(Fore.WHITE + Back.BLACK + '\ntest5, цвет рамки такой же как цвет текста')
     a5.draw()
 
-    a6 = Draw(picture(draw_skull), None, None)
-    print('\na6')
+    a6 = Draw(picture(None), None, None)
+    print(Fore.WHITE + Back.BLACK + '\ntest6, случайный цвет рамки')
     a6.draw()
+
+    a7 = Draw(picture(figure(0), None), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
+    print(Fore.WHITE + Back.BLACK + '\ntest7, цвет общей рамки при явно указанном цвете рамки в картинке')
+    a7.draw()
+
+    a = {'canvas2a': ['════%%%%%%%%%═════123══════════3════════════', Fore.GREEN, Back.BLACK]}
+
+    a8 = Draw(picture(figure(0), a), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
+    print(Fore.WHITE + Back.BLACK + '\ntest8, изменение формы рамки в картинке')
+    a8.draw()
+
+    a = {'canvas2a': ['════%%%%%%%%%═════123══════════3════════════', Fore.LIGHTMAGENTA_EX, Back.BLACK]}
+
+    a8 = Draw(picture(figure(0), a), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
+    print(Fore.WHITE + Back.BLACK + '\ntest8, изменение формы и цвета рамки в картинке')
+    a8.draw()
