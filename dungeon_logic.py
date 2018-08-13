@@ -1,4 +1,4 @@
-from old_dungeon_draw import cls
+from dungeon_draw import Draw, cls
 from colorama import init, Fore, Back, Style
 import time
 import os
@@ -16,7 +16,7 @@ class Menu:
         """метод проверки правельного выбора пуктов меню"""
         while True:
             try:
-                print(Fore.GREEN + ' выш выбор: ', end='')
+                print(Fore.GREEN + '\n выш выбор: ', end='')
                 player_choice = int(input())
                 if self.x <= player_choice <= self.y:
                     return player_choice
@@ -25,8 +25,7 @@ class Menu:
             except (TypeError, ValueError):
                 cls()
                 self.draw_repeat.draw()
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f' введите цифру от {self.x} до {self.y}')
-                print(Style.RESET_ALL)
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f'\n введите цифру от {self.x} до {self.y}', Style.RESET_ALL)
 
 
 def game_exit():
@@ -39,10 +38,4 @@ def game_exit():
 
 if __name__ == '__main__':
     # init()
-    from old_dungeon_draw import Draw, colors_no_black
-    from dungeon_pictures import draw_skull, draw_start_menu, draw_game
-    import random
-    random_color1 = random.choice(colors_no_black)
-    random_color2 = random.choice(colors_no_black)
-    menu = Menu(1, 3, Draw(draw_game, Fore.LIGHTCYAN_EX, draw_skull, draw_start_menu, random_color1, random_color2))
-    menu.check_choice()
+    pass

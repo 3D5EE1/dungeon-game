@@ -10,7 +10,11 @@ colors_back = (Back.BLACK, Back.RED, Back.GREEN, Back.YELLOW, Back.BLUE, Back.MA
 colors_style = (Style.DIM, Style.NORMAL, Style.BRIGHT)
 
 
-def picture(change, append_original_picture=None):
+def cls():
+    os.system('cls')
+
+
+def canvas(fragment=None, add=None, change=None):
     """СШК (Стандартная шаблонная консрукция)  (с) ваха ^_^,  функция  задает  изначальные паратметры полей
     отрисовки рамки и картинок, ее можно изменять добавляя нужные поля.  Для уменьшеня размера достаточно в
     классе Draw() в аргументе "size_picture" указать нужное значение, для добавления новых фрагментов нужно
@@ -69,32 +73,43 @@ def picture(change, append_original_picture=None):
          'frame1v': '╚', 'canvas1v': '', 'canvas2v': '════════════════════════════════════════════', 'canvas3v': '',
          'frame2v': '═', 'canvas4v': '══════════════════════════════════════════════════════', 'frame3v': '╝\n', }
 
-    if append_original_picture is None:
+    if add is None:  # добавляет поля к fragment или заменяет уже существующие поля
         pass
     else:
-        for key, vol in append_original_picture.items():
-            if key in change:
-                change[key] = vol
+        for key, vol in add.items():
+            if fragment is None or key not in fragment or key not in original_picture:
+                original_picture[key] = vol[0]
+            elif len(vol) == 0:
+                fragment.pop(key)
             else:
-                original_picture[key] = vol
+                fragment[key] = vol
 
-    original_numbers = []
-    original_frames = []
-
-    for i in original_picture:
-        original_numbers.append(i)
-        if 'frame' in i:
-            original_frames.append(i)
-
-    original_colors = {'None': [random.choice(colors_no_black), Back.BLACK]}
-
-    if change is None:
-        return original_picture, original_numbers, original_frames, original_colors
+    if change is None:  # дополнительная возможность изменить новый fragment
+        pass
     else:
         for key, vol in change.items():
+            if len(vol) == 0:
+                fragment.pop(key)
+            else:
+                fragment[key] = vol
+
+    original_keys = []
+    original_frames = []
+
+    for key in original_picture:  # копирует все ключи original_picture в original_keys, frame's в original_frames
+        original_keys.append(key)
+        if 'frame' in key:
+            original_frames.append(key)
+
+    original_colors = {'None': [random.choice(colors_no_black), Back.BLACK, '', ]}
+
+    if fragment is None:  # возвращает параметры для дальнейшей отрисовки картинки
+        return original_picture, original_keys, original_frames, original_colors
+    else:
+        for key, vol in fragment.items():
             original_picture[key] = vol[0]
-            original_colors[key] = [vol[1], vol[2]]
-        return original_picture, original_numbers, original_frames, original_colors
+            original_colors[key] = [vol[1], vol[2], vol[3]]
+        return original_picture, original_keys, original_frames, original_colors
 
 
 class Draw:
@@ -107,109 +122,104 @@ class Draw:
     """
     new_keys = []
 
-    def __init__(self, draw_picture, size_picture, color_frame):
-        self.draw_picture = draw_picture
-        self.size_picture = size_picture
-        self.color_frame = color_frame
+    def __init__(self, picture=canvas(), size=None, frame=None):
+        self.picture = picture
+        self.size = size
+        self.frame = frame
+        self.color = self.picture[3]
 
-    def picture_size(self):
+    def canvas_size(self):
         """определяет размеры холста"""
-        length_first_line = [0, 0, 0]
+        elements_first_line = [0, 0, 0]
 
-        for key, vol in self.draw_picture[0].items():
-            length_first_line[0] += len(vol)
-            length_first_line[1] += 1
+        for key, vol in self.picture[0].items():
+            elements_first_line[0] += len(vol)
+            elements_first_line[1] += 1
             if 'frame' in key:
-                length_first_line[2] += 1
+                elements_first_line[2] += 1
             if '\n' in vol:
                 break
 
-        return length_first_line
+        return elements_first_line
 
     def draw(self):
         """основной метод отрисовки нашей графики, принимает положительные числа или "None" тем самым можно "обрезать"
            нашу СШК. None передаст размеры СШК в изначальном виде, при этом все внесенные измения сохраняются. """
 
-        if self.size_picture is None:
-            self.new_keys = self.draw_picture[1]
-        elif self.size_picture > len(self.draw_picture[1]) / self.picture_size()[1] or self.size_picture < 0:
+        if self.size is None:
+            self.new_keys = self.picture[1]
+        elif self.size > len(self.picture[1]) / self.canvas_size()[1] or self.size < 0:
             return print(
                 Fore.LIGHTWHITE_EX + Back.MAGENTA
-                + f'второй аргумент Draw() "size_picture" не может быть меньше 0 или больше '
-                  f'{int(len(self.draw_picture[1]) / self.picture_size()[1])} !!! ваше значение: {self.size_picture}'
+                + f'второй аргумент Draw() "size" не может быть меньше 0 или больше '
+                  f'{int(len(self.picture[1]) / self.canvas_size()[1])} !!! ваше значение: {self.size}'
             )
         else:
-            self.new_keys = self.draw_picture[1][0: self.size_picture * self.picture_size()[1]]
+            self.new_keys = self.picture[1][0: self.size * self.canvas_size()[1]]
 
         for key in self.new_keys:
-            if key in self.draw_picture[3]:
-                print(self.draw_picture[3][key][0] + self.draw_picture[3][key][1] + self.draw_picture[0][key], end='')
+            if key in self.color:
+                print(self.color[key][0] +
+                      self.color[key][1] + self.color[key][2] + self.picture[0][key], end='')
 
-            elif self.color_frame is None:
-                if 'canvas2a'in self.draw_picture[3]:
-                    print(self.draw_picture[3]['canvas2a'][0]
-                          + self.draw_picture[3]['canvas2a'][1] + self.draw_picture[0][key], end='')
+            elif self.frame is None:  # параметры поля Frame
+                if 'canvas2a'in self.color:
+                    print(self.color['canvas2a'][0] +
+                          self.color['canvas2a'][1] + self.color['canvas2a'][2] + self.picture[0][key], end='')
                 else:
-                    print(self.draw_picture[3]['None'][0]
-                          + self.draw_picture[3]['None'][1] + self.draw_picture[0][key], end='')
+                    print(self.color['None'][0] +
+                          self.color['None'][1] + self.color['None'][2] + self.picture[0][key], end='')
             else:
-                print(self.color_frame[0] + self.color_frame[1] + self.draw_picture[0][key], end='')
+                print(self.frame[0] + self.frame[1] + self.frame[2] + self.picture[0][key], end='')
 
     def window_size(self):
         """задает размер окна в windows терминале(нужен при компиляции)"""
-        os.system(f"mode con cols={self.picture_size()[0]} "
-                  f"lines={int(len(self.draw_picture[2]) / self.picture_size()[2] + 5)}")
+        os.system(f"mode con cols={self.canvas_size()[0]} "
+                  f"lines={int(len(self.picture[2]) / self.canvas_size()[2] + 5)}")
 
 
 if __name__ == '__main__':
-    from dungeon_pictures import figure
+    from dungeon_pictures import pictures
 
-    a = {'frame1w': '╚', 'canvas1w': '', 'canvas2w': '═══════════════W══════W═════════════════════', 'canvas3w': '',
-         'frame2w': '═', 'canvas4w': '═════════════════════════════w════════════════════════', 'frame3w': '╝\n',
-         'frame1x': '╚', 'canvas1x': '', 'canvas2x': '═══════════X════════════════════════════════', 'canvas3x': '',
-         'frame2x': '═', 'canvas4x': '═══════════════════════════════x══════════════════════', 'frame3x': '╝\n',
-         'frame1y': '╚', 'canvas1y': '', 'canvas2y': '══════════════Y═════════════════════════════', 'canvas3y': '',
-         'frame2y': '═', 'canvas4y': '════════════════════════════════y═════════════════════', 'frame3y': '╝\n',
-         'frame1z': '╚', 'canvas1z': '', 'canvas2z': '═════════════Z══════════════════════════════', 'canvas3z': '',
-         'frame2z': '═', 'canvas4z': '═════════════════════════════════z════════════════════', 'frame3z': '╝\n', }
+    test1 = Draw(size=-1)
+    print(Fore.WHITE + Back.BLACK + '\ntest1, неверные параметры "обрезания" шаблона')
+    test1.window_size()
+    test1.draw()
 
-    a1 = Draw(picture(figure(0), a), None, None)
-    a1.window_size()
-    print(Fore.WHITE + Back.BLACK + '\ntest1, добавление дополнительных полей')
-    a1.draw()
+    test2 = Draw(size=21)
+    print(Fore.WHITE + Back.BLACK + '\ntest2, неверные параметры "обрезания" шаблона')
+    test2.draw()
 
-    a2 = Draw(picture(figure(0)), -1, None)
-    print(Fore.WHITE + Back.BLACK + '\ntest2, неверные параметра "обрезания" шаблона')
-    a2.draw()
+    test3 = Draw()
+    test1.window_size()
+    print(Fore.WHITE + Back.BLACK + '\ntest3, только рамка, цвет случайный')
+    test3.draw()
 
-    a3 = Draw(picture(figure(0)), 21, figure(0)['canvas2a'][1:])
-    print(Fore.WHITE + Back.BLACK + '\ntest3, неверные параметра "обрезания" шаблона')
-    a3.draw()
+    test4 = Draw(canvas(add=pictures(3)))
+    print(Fore.WHITE + Back.BLACK + '\ntest4, добавление 4-х полей, цвет рамки случайный')
+    test4.draw()
 
-    a4 = Draw(picture(figure(0)), 10, figure(0)['canvas2a'][1:])
-    print(Fore.WHITE + Back.BLACK + '\ntest4, верные параметра "обрезания" шаблона')
-    a4.draw()
+    test5 = Draw(canvas(add=pictures(3)), size=25)
+    print(Fore.WHITE + Back.BLACK + '\ntest5, добавление 4-х полей, неверные параметры "обрезания" шаблона')
+    test5.draw()
 
-    a5 = Draw(picture(figure(0)), None, figure(0)['canvas4l'][1:])
-    print(Fore.WHITE + Back.BLACK + '\ntest5, цвет рамки такой же как цвет текста')
-    a5.draw()
+    test6 = Draw(canvas(pictures(0)))
+    print(Fore.WHITE + Back.BLACK + '\ntest6, рисует скелета, цвет рамки повторяет рамку скелета')
+    test6.draw()
 
-    a6 = Draw(picture(None), None, None)
-    print(Fore.WHITE + Back.BLACK + '\ntest6, случайный цвет рамки')
-    a6.draw()
+    test7 = Draw(canvas(pictures(0)), size=5)
+    print(Fore.WHITE + Back.BLACK + '\ntest7, рисует скелета, обрезает до 5, цвет рамки повторяет рамку скелета')
+    test7.draw()
 
-    a7 = Draw(picture(figure(0), None), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
-    print(Fore.WHITE + Back.BLACK + '\ntest7, цвет общей рамки при явно указанном цвете рамки в картинке')
-    a7.draw()
+    test8 = Draw(canvas(pictures(0), change={'canvas2a': []}))
+    print(Fore.WHITE + Back.BLACK + '\ntest8, рисует скелета, удаляет рамку скелета, цвет рамки случайный')
+    test8.draw()
 
-    a = {'canvas2a': ['════%%%%%%%%%═════123══════════3════════════', Fore.GREEN, Back.BLACK]}
+    test9 = Draw(canvas(pictures(0), pictures(3), pictures(2)), None, pictures(0)['canvas2o'][1:])
+    print(Fore.WHITE + Back.BLACK + '\ntest9, рисует скелета, добавляет 4 поля, добавляет текст, цвет рамки '
+                                    ' как цвет скелета, но рамка скелета из шаблона скелета')
+    test9.draw()
 
-    a8 = Draw(picture(figure(0), a), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
-    print(Fore.WHITE + Back.BLACK + '\ntest8, изменение формы рамки в картинке')
-    a8.draw()
-
-    a = {'canvas2a': ['════%%%%%%%%%═════123══════════3════════════', Fore.LIGHTMAGENTA_EX, Back.BLACK]}
-
-    a8 = Draw(picture(figure(0), a), None, [Fore.LIGHTMAGENTA_EX, Back.BLACK])
-    print(Fore.WHITE + Back.BLACK + '\ntest8, изменение формы и цвета рамки в картинке')
-    a8.draw()
+    test10 = Draw(canvas(pictures(0), pictures(2), {'canvas2a': []}), None, pictures(2)['canvas4f'][1:])
+    print(Fore.WHITE + Back.BLACK + '\ntest10, рисует скелета, добавляет текст, делает цвет рамки как цвет текста')
+    test10.draw()
