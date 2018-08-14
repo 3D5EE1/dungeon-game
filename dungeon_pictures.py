@@ -12,7 +12,7 @@ def pictures(number):
 
     color = [
         ('skull', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
-        ('cross', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
+        ('cross', Fore.LIGHTBLUE_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
         ('text1', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', '', ),
         ('add_4_canvas', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
     ]
@@ -39,24 +39,24 @@ def pictures(number):
     }
 
     cross = {
-        'canvas2a': ['════════════════════════════════════════════', color[number][3], color[number][4], '', ],
-        'canvas2c': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2d': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2e': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2f': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2g': ['############################################', color[number][3], color[number][4], '', ],
-        'canvas2h': ['############################################', color[number][3], color[number][4], '', ],
-        'canvas2i': ['############################################', color[number][3], color[number][4], '', ],
+        'canvas2a': ['════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['                       ######               ', color[number][3], color[number][4], '', ],
+        'canvas2d': ['                      ######                ', color[number][3], color[number][4], '', ],
+        'canvas2e': ['                      ######                ', color[number][3], color[number][4], '', ],
+        'canvas2f': ['                     ######                 ', color[number][3], color[number][4], '', ],
+        'canvas2g': ['           #########################        ', color[number][3], color[number][4], '', ],
+        'canvas2h': ['          ##########################        ', color[number][3], color[number][4], '', ],
+        'canvas2i': ['         ##########################         ', color[number][3], color[number][4], '', ],
         'canvas2k': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2l': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2m': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2n': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2o': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2p': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2q': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2r': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2s': ['                   ######                   ', color[number][3], color[number][4], '', ],
-        'canvas2t': ['                   ######                   ', color[number][3], color[number][4], '', ],
+        'canvas2l': ['                  ######                    ', color[number][3], color[number][4], '', ],
+        'canvas2m': ['                  ######                    ', color[number][3], color[number][4], '', ],
+        'canvas2n': ['                 ######                     ', color[number][3], color[number][4], '', ],
+        'canvas2o': ['                 ######                     ', color[number][3], color[number][4], '', ],
+        'canvas2p': ['                ######                      ', color[number][3], color[number][4], '', ],
+        'canvas2q': ['                ######                      ', color[number][3], color[number][4], '', ],
+        'canvas2r': ['            ,,&&&&&&&&&&,,                  ', color[number][3], color[number][4], '', ],
+        'canvas2s': ['        ,,@@@@@@@@@@@@@@@@@,,               ', color[number][3], color[number][4], '', ],
+        'canvas2t': ['  ,,,,@@@@@@@@@@@@@@@@@@@@@@@@@@@@,,        ', color[number][3], color[number][4], '', ],
     }
 
     text1 = {
@@ -68,14 +68,14 @@ def pictures(number):
     }
 
     add_4_canvas = {
-        'frame1v': ['║', color[number][1], color[number][2], '', ],
+        'frame1v': ['║', color[number][3], color[number][4], '', ],
         'canvas1v': ['', color[number][3], color[number][4], '', ],
         'canvas2v': ['                                            ', color[number][3], color[number][4], '', ],
         'canvas3v': ['', color[number][3], color[number][4], '', ],
         'frame2v': [' ', color[number][3], color[number][4], '', ],
         'canvas4v': ['                                                      ', color[number][3], color[number][4], ''],
-        'frame3v': ['║\n', color[number][1], color[number][2], '', ],
-        'frame1w': ['║', color[number][1], color[number][2], '', ],
+        'frame3v': ['║\n', color[number][3], color[number][4], '', ],
+        'frame1w': ['║', color[number][3], color[number][4], '', ],
         'canvas1w': ['', color[number][3], color[number][4], '', ],
         'canvas2w': ['                                            ', color[number][3], color[number][4], '', ],
         'canvas3w': ['', color[number][3], color[number][4], '', ],
@@ -98,7 +98,7 @@ def pictures(number):
         'frame3y': ['║\n', color[number][1], color[number][2], '', ],
         'frame1z': ['╚', color[number][1], color[number][2], '', ],
         'canvas1z': ['', color[number][3], color[number][4], '', ],
-        'canvas2z': ['════════════════════════════════════════════', color[number][3], color[number][4], '', ],
+        'canvas2z': ['════════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas3z': ['', color[number][3], color[number][4], '', ],
         'frame2z': ['═', color[number][1], color[number][2], '', ],
         'canvas4z': ['══════════════════════════════════════════════════════', color[number][1], color[number][2], ''],

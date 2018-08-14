@@ -77,7 +77,7 @@ def canvas(fragment=None, add=None, change=None):
         pass
     else:
         for key, vol in add.items():
-            if fragment is None or key not in fragment or key not in original_picture:
+            if fragment is None or key not in fragment and key not in original_picture:
                 original_picture[key] = vol[0]
             elif len(vol) == 0:
                 fragment.pop(key)
