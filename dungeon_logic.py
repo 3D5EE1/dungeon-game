@@ -18,6 +18,7 @@ class Menu:
             try:
                 print(Fore.GREEN + '\n выш выбор: ', end='')
                 player_choice = int(input())
+                cls()
                 if self.x <= player_choice <= self.y:
                     return player_choice
                 else:
