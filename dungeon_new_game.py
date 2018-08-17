@@ -1,39 +1,100 @@
 from colorama import init, Fore, Back, Style
 from dungeon_draw import cls
-import re
+from dungeon_save import save_file
 import json
 
 
 class Game:
 
-    def __init__(self, draw_repeat=None, picture=None, text=None):
+    def __init__(self, draw_repeat=None, picture=None, text=None, choice= None, name=None, params=None):
         self.draw_repeat = draw_repeat
         self.picture = picture
         self.text = text
+        self.choice = choice
+        self.name = name
+        self.params = params
 
     def check_name(self):
         while True:
             try:
-                print(Fore.GREEN + Back.BLACK + '\n >>>', end='')
+                print(Fore.GREEN + Back.BLACK + '\n ваше имя: ', end='')
                 character_name = str(input())
                 if 1 < len(character_name) < 21 and character_name.isalpha():
+                    cls()
                     return character_name.capitalize()
                 else:
                     raise ValueError
             except ValueError:
                 cls()
                 self.draw_repeat.draw()
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + '\n имя персонажа может состоять только из букв \n'
-                                                         '      длина имени от 2 до 20 символов \n'
-                                                         '        цифр в имене быть не должно\n'
-                                                         '        (в вашем же имени нет цифр)', Style.RESET_ALL)
+                print(
+                    Style.BRIGHT + Fore.LIGHTCYAN_EX + '\n имя персонажа может состоять только из букв \n'
+                                                       '      длина имени от 2 до 20 символов \n'
+                                                       '        цифр в имене быть не должно\n'
+                                                       '        (в вашем же имени нет цифр)',
+                    Style.RESET_ALL
+                )
 
     def print_text(self):
-        cls()
         for key, vol in self.text.items():
             if key in self.picture:
                 self.picture[key][0] = vol + ' ' * (len(self.picture[key][0]) - len(vol))
         return self.picture
+
+    def sex_choice(self):
+        if self.choice == 1:
+            return 'мужчина'
+        elif self.choice == 2:
+            return 'женщина'
+
+    def save(self):
+        with open('save.txt', 'r') as save:
+            characters = json.loads(save.read())
+            if self.params:
+                characters[self.name] += [self.params]
+                with open('save.txt', 'w') as save_game:
+                    save_game.write(json.dumps(characters))
+            elif self.name in characters:
+                self.draw_repeat.draw()
+                return False
+            elif self.name not in characters:
+                characters[self.name] = []
+                with open('save.txt', 'w') as save_game:
+                    save_game.write(json.dumps(characters))
+                return True
+
+
+
+    def save_new_game(self):
+        try:
+            with open('save.txt', 'x') as save:
+                save.write(json.dumps(save_file))
+            return self.save()
+        except FileExistsError:  # если файл уже есть
+            return self.save()
+
+
+            # with open('save.txt', 'r') as save:
+            #     char = json.loads(save.read())
+            #     print(char)
+            #     char[self.name][0] = self.params
+            # with open('save.txt', 'w') as save:
+            #     save.write(char)
+        # except FileExistsError:
+        #     pass
+
+    # def save(self):
+    #     """метод создает или загружает save фаил"""
+    #     try:
+    #         with open('save.txt', 'x') as save:
+    #             save.write(json.dumps(save_file))
+    #         print('создан сайв')
+    #     except FileExistsError:
+    #         print('таокй файл уже есть')
+
+
+            # with open('save.txt', 'w') as save:
+            #     save.write(json.dumps(char))
 
     # def change_draw(self):
     #
@@ -51,8 +112,8 @@ class Game:
 if __name__ == '__main__':
     from dungeon_draw import Draw, canvas
     from dungeon_pictures import pictures
-    game = Game(picture=pictures(7), text={'canvas4c': 'asds'})
-    Draw(canvas(game.print_text()), 7).draw()
+    game = Game()
+    game.save()
 
 
 

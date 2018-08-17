@@ -18,19 +18,18 @@ class Menu:
             try:
                 print(Fore.GREEN + '\n выш выбор: ', end='')
                 player_choice = int(input())
-                cls()
                 if self.x <= player_choice <= self.y:
+                    cls()
                     return player_choice
                 else:
                     raise ValueError
-            except (TypeError, ValueError):
+            except ValueError:
                 cls()
                 self.draw_repeat.draw()
                 print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f'\n введите цифру от {self.x} до {self.y}', Style.RESET_ALL)
 
 
 def game_exit():
-    cls()
     print(Style.BRIGHT + Fore.GREEN + 'спасибо за игру, всего вам хорошего!!!')
     time.sleep(2.5)
     os.system('exit')
