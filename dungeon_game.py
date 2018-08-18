@@ -2,16 +2,18 @@ from colorama import init, Fore, Back, Style
 from dungeon_draw import cls
 import json
 
-# save_hero = {'name': ['race', 'sex', 'age', 'strange', 'weapon', 'health=100', 'armor', 'stamina=100', 'manna=100', 'ulta']}
+# save_hero = {'name':
+#                ['race', 'sex', 'age', 'strange', 'weapon', 'health=100', 'armor', 'stamina=100', 'manna=100', 'ulta']}
 
 save_file = {
     'Гарош': ['орк', 'мужская особь', 'среднего возраста', 'средний показатель', 'массивный топор', 100, 10, 100, 0,
               'кратковременно впадает в ярость, незначительно увеличиваются все показатели'],
 }
 
+
 class Game:
 
-    def __init__(self, draw_repeat=None, picture=None, text=None, choice= None, name=None, params=None):
+    def __init__(self, draw_repeat=None, picture=None, text=None, choice=None, name=None, params=None):
         self.draw_repeat = draw_repeat
         self.picture = picture
         self.text = text
@@ -53,8 +55,8 @@ class Game:
 
     def save(self):
         with open('save.txt', 'r') as save:
-            characters = json.loads(save.read())
-            if self.params:
+            characters = json.loads(save.read())  # загружает фаил
+            if self.name and self.params:
                 characters[self.name] += [self.params]
                 with open('save.txt', 'w') as save_game:
                     save_game.write(json.dumps(characters))
@@ -67,8 +69,6 @@ class Game:
                     save_game.write(json.dumps(characters))
                 return True
 
-
-
     def save_new_game(self):
         try:
             with open('save.txt', 'x') as save:
@@ -76,29 +76,6 @@ class Game:
             return self.save()
         except FileExistsError:  # если файл уже есть
             return self.save()
-
-
-            # with open('save.txt', 'r') as save:
-            #     char = json.loads(save.read())
-            #     print(char)
-            #     char[self.name][0] = self.params
-            # with open('save.txt', 'w') as save:
-            #     save.write(char)
-        # except FileExistsError:
-        #     pass
-
-    # def save(self):
-    #     """метод создает или загружает save фаил"""
-    #     try:
-    #         with open('save.txt', 'x') as save:
-    #             save.write(json.dumps(save_file))
-    #         print('создан сайв')
-    #     except FileExistsError:
-    #         print('таокй файл уже есть')
-
-
-            # with open('save.txt', 'w') as save:
-            #     save.write(json.dumps(char))
 
     # def change_draw(self):
     #
@@ -111,11 +88,7 @@ class Game:
     #         self.new_text[self.name_str] = ' ' * space_1 + Game.change_start(self).capitalize() + ' ' * space_2
 
 
-
-
 if __name__ == '__main__':
-    from dungeon_draw import Draw, canvas
-    from dungeon_pictures import pictures
     game = Game()
     game.save()
 

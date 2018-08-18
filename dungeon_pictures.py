@@ -24,6 +24,7 @@ def pictures(number):
         ('check_name', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
         ('name_approved', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
         ('canvas_three', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('menu_continue', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
     ]
 
     skull = {
@@ -158,7 +159,6 @@ def pictures(number):
         'canvas4g': [' в главное меню      ', color[number][3], color[number][4], '', ],
         'canvas4h': ['                     ', color[number][3], color[number][4], '', ],
         'canvas4i': ['═════════════════════', '', '', '', ],
-        'frame2i': ['╚', color[number][1], color[number][2], ''],
         'frame1i': ['╚', '', '', '', ],
         'frame2i': ['═', '', '', '', ],
         'frame3i': ['╝\n', '', '', '', ],
@@ -238,7 +238,7 @@ def pictures(number):
     }
 
     menu_continue = {
-
+        'canvas2c': [' "1" - новое имя   "2" - вернуться в главное меню ', color[number][5], color[number][6], '', ],
     }
 
     picture = {
@@ -252,6 +252,7 @@ def pictures(number):
         7: check_name,
         8: name_approved,
         9: canvas_three,
+        10: menu_continue,
     }
 
     return picture[number]
