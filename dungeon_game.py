@@ -1,8 +1,13 @@
 from colorama import init, Fore, Back, Style
 from dungeon_draw import cls
-from dungeon_save import save_file
 import json
 
+# save_hero = {'name': ['race', 'sex', 'age', 'strange', 'weapon', 'health=100', 'armor', 'stamina=100', 'manna=100', 'ulta']}
+
+save_file = {
+    'Гарош': ['орк', 'мужская особь', 'среднего возраста', 'средний показатель', 'массивный топор', 100, 10, 100, 0,
+              'кратковременно впадает в ярость, незначительно увеличиваются все показатели'],
+}
 
 class Game:
 
@@ -28,10 +33,9 @@ class Game:
                 cls()
                 self.draw_repeat.draw()
                 print(
-                    Style.BRIGHT + Fore.LIGHTCYAN_EX + '\n имя персонажа может состоять только из букв \n'
-                                                       '      длина имени от 2 до 20 символов \n'
-                                                       '        цифр в имене быть не должно\n'
-                                                       '        (в вашем же имени нет цифр)',
+                    Style.BRIGHT + Fore.LIGHTCYAN_EX + '\n     имя персонажа может состоять только из букв \n'
+                                                       '           длина имени от 2 до 20 символов \n'
+                                                       '             цифр в имене быть не должно',
                     Style.RESET_ALL
                 )
 

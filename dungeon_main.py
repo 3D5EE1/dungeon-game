@@ -2,10 +2,10 @@ from colorama import init, Fore, Back, Style
 from dungeon_draw import canvas, Draw
 from dungeon_pictures import pictures
 from dungeon_logic import Menu, game_exit
-from dungeon_new_game import Game
+from dungeon_game import Game
 import random
-
 import json
+
 
 def run_game():
     run = True
@@ -15,7 +15,7 @@ def run_game():
         draw.draw()
         menu_choice = Menu(1, 3, draw).check_choice()
         if menu_choice == 1:
-            hero, char_name, enemy_name = True, None, None
+            name_choice, hero, char_name, enemy_name = 1, True, None, None
             while hero:
                 name = False
                 while not name:
@@ -24,24 +24,35 @@ def run_game():
                     char_name = Game(draw).check_name()
                     picture_name_approved = Game(picture=pictures(8), text={'canvas4c': char_name}).print_text()
                     picture_name = Game(picture=pictures(7), text={'canvas4c': char_name}).print_text()
-                    draw = Draw(canvas(picture_name, pictures(6)), 7)
+                    draw = Draw(canvas(picture_name, pictures(6)), 9)
                     draw.draw()
-                    name_choice = Menu(1, 2, draw).check_choice()
+                    name_choice = Menu(1, 3, draw).check_choice()
                     if name_choice == 1:
                         draw = Draw(canvas(picture_name_approved), 5)
                         name = Game(draw_repeat=draw, name=char_name).save_new_game()
-                        hero = False
+                        draw = Draw(canvas(picture_name, pictures(6)), 9)
+                        draw.draw()
+                        approved_name_choice = Menu(1, 2, draw).check_choice()
+                        if approved_name_choice == 1:
+                            hero = False
+                        elif approved_name_choice == 2:
+                            name_choice = 3
+                            break
                     elif name_choice == 2:
                         pass
-            sex = Game(picture=pictures(4), text={'canvas2c': '      Выберите пол вашего персонажа!!!'}).print_text()
-            draw = Draw(canvas(sex, pictures(5)), 5)
-            draw.draw()
-            sex = Game(picture=pictures(4), text={'canvas2c': '       "1" - мужской  "2" - женский'})
-            draw = Draw(canvas(sex.print_text(), pictures(5)), 5)
-            draw.draw()
-            sex_choice = Menu(1, 2, draw).check_choice()
-            sex = Game(choice=sex_choice).sex_choice()
-            Game(name=char_name, params=sex).save_new_game()
+                    elif name_choice == 3:
+                        hero = False
+                        break
+            if name_choice != 3:
+                sex = Game(picture=pictures(4), text={'canvas2c': '      Выберите пол вашего персонажа!!!'}).print_text()
+                draw = Draw(canvas(sex, pictures(5)), 5)
+                draw.draw()
+                sex = Game(picture=pictures(4), text={'canvas2c': '       "1" - мужской  "2" - женский'})
+                draw = Draw(canvas(sex.print_text(), pictures(5)), 5)
+                draw.draw()
+                sex_choice = Menu(1, 2, draw).check_choice()
+                sex = Game(choice=sex_choice).sex_choice()
+                Game(name=char_name, params=sex).save_new_game()
             with open('save.txt', 'r') as save:
                 characters = json.loads(save.read())
             print(characters)
@@ -68,8 +79,6 @@ def run_game():
             # draw.draw()
             # sex_choice = Menu(1, 2, draw).check_choice()
             # sex = Game(choice=sex_choice).sex_choice()
-
-            run = game_exit()
         elif menu_choice == 2:
             pass
         elif menu_choice == 3:

@@ -115,9 +115,11 @@ def pictures(number):
     }
 
     name_hero = {
-        'canvas2a': ['════════════════════════════════════════════', color[number][3], color[number][4], '', ],
-        'canvas2c': ['       Ведите имя своего персонажа!!!       ', color[number][5], color[number][6], '', ],
-        'canvas2e': ['════════════════════════════════════════════', '', '', '', ],
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][3], color[number][4], '', ],
+        'canvas2b': ['                                                  ', color[number][3], color[number][4], '', ],
+        'canvas2c': ['          Ведите имя своего персонажа!!!          ', color[number][5], color[number][6], '', ],
+        'canvas2d': ['                                                  ', color[number][3], color[number][4], '', ],
+        'canvas2e': ['══════════════════════════════════════════════════', '', '', '', ],
         'frame1e': ['╚', '', '', '', ],
         'frame2e': ['═', '', '', '', ],
         'frame3e': ['╝\n', '', '', '', ],
@@ -144,26 +146,30 @@ def pictures(number):
         'canvas2d': ['                       ', color[number][3], color[number][4], '', ],
         'canvas2e': [' все верно? выберите "1', color[number][3], color[number][4], '', ],
         'canvas2f': ['                       ', color[number][3], color[number][4], '', ],
-        'canvas2g': ['═══════════════════════', '', '', '', ],
+        'canvas2g': ['     "3" - для возарата', color[number][3], color[number][4], '', ],
+        'canvas2h': ['                       ', color[number][3], color[number][4], '', ],
+        'canvas2i': ['═══════════════════════', '', '', '', ],
         'canvas4a': ['═════════════════════', '', '', '', ],
         'canvas4b': ['                     ', color[number][3], color[number][4], '', ],
         'canvas4c': ['                     ', color[number][5], color[number][6], '', ],
         'canvas4d': ['                     ', color[number][3], color[number][4], '', ],
         'canvas4e': ['" - да или "2" - нет ', color[number][3], color[number][4], '', ],
         'canvas4f': ['                     ', color[number][3], color[number][4], '', ],
-        'canvas4g': ['═════════════════════', '', '', '', ],
-        'frame2е': ['╚', color[number][1], color[number][2], ''],
-        'frame1g': ['╚', '', '', '', ],
-        'frame2g': ['═', '', '', '', ],
-        'frame3g': ['╝\n', '', '', '', ],
+        'canvas4g': [' в главное меню      ', color[number][3], color[number][4], '', ],
+        'canvas4h': ['                     ', color[number][3], color[number][4], '', ],
+        'canvas4i': ['═════════════════════', '', '', '', ],
+        'frame2i': ['╚', color[number][1], color[number][2], ''],
+        'frame1i': ['╚', '', '', '', ],
+        'frame2i': ['═', '', '', '', ],
+        'frame3i': ['╝\n', '', '', '', ],
     }
 
     name_approved = {
-        'canvas2a': ['═══════════════════════════════════', color[number][1], color[number][2], '', ],
-        'canvas2b': ['                                   ', color[number][1], color[number][2], '', ],
-        'canvas2c': [' уже есть такой персонаж с именем: ', color[number][3], color[number][4], '', ],
-        'canvas2d': ['                                   ', color[number][1], color[number][2], '', ],
-        'canvas2e': ['═══════════════════════════════════', '', '', '', ],
+        'canvas2a': ['═════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2b': ['                             ', color[number][1], color[number][2], '', ],
+        'canvas2c': ['  уже есть персонаж с именем:', color[number][3], color[number][4], '', ],
+        'canvas2d': ['                             ', color[number][1], color[number][2], '', ],
+        'canvas2e': ['═════════════════════════════', '', '', '', ],
         'canvas4a': ['═════════════════════', color[number][1], color[number][2], '', ],
         'canvas4b': ['                     ', color[number][1], color[number][2], '', ],
         'canvas4c': ['                     ', color[number][5], color[number][6], '', ],
@@ -229,6 +235,10 @@ def pictures(number):
         'frame3k': ['╝\n', color[number][1], color[number][2], '', ],
         'frame1a': ['╔', color[number][1], color[number][2], '', ],
         'frame1k': ['╚', color[number][1], color[number][2], '', ],
+    }
+
+    menu_continue = {
+
     }
 
     picture = {
