@@ -112,6 +112,7 @@ def run_game():
                     draw.draw()
                     class_choice = Menu(1, 4, draw).check_choice()  # выбор класса вашего персонажа
                     char_choice += [class_choice]
+
                 race_class = Game(picture=pictures(4),
                                   text={'canvas2c': '       Выберите возраст вашего персонажа!!!'}).print_text()
                 # создаем картинку выбора класса, внеся изменения в готовую картинку

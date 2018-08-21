@@ -12,140 +12,55 @@ save_file = {
 
 
 def char_params(char):
-    params = [None, None, None, None, None, None, None, None, None, None, None]
+    params = []
     if char[0] == 1:
-        params[0] = 'мужчина'
+        params += ['мужчина']
     elif char[0] == 2:
-        params[0] = 'женщина'
+        params += ['женщина']
 
     if char[1] == 1:
-        params[1] = 'человек'
+        params += ['человек']
+
         if char[2] == 1:
-            params[2] = 'воин'
-            params[3] = str(char[3])
-            params[4] = 'меч'
-            params[5] = '100'''
-            params[6] = '50'''
-            params[7] = '20'''
-            params[8] = '50'''
-            params[9] = '10'''
-            params[10] = 'кратковременно впадает в ярость'
+            params += ['воин', str(char[3]), 'меч', '100', '50', '20', '50', '10', 'кратковременно впадает в ярость']
         elif char[2] == 2:
-            params[2] = 'лучник'
-            params[3] = str(char[3])
-            params[4] = 'лук'
-            params[5] = '100'
-            params[6] = '15'
-            params[7] = '60'
-            params[8] = '50'
-            params[9] = '10'
-            params[10] = 'серия метких выстрелов'
+            params += ['лучник', str(char[3]), 'лук', '100', '15', '60', '50', '10', 'серия метких выстрелов']
         elif char[2] == 3:
-            params[2] = 'маг'
-            params[3] = str(char[3])
-            params[4] = 'посох'
-            params[5] = '60'
-            params[6] = '15'
-            params[7] = '10'
-            params[8] = '20'
-            params[9] = '100'
-            params[10] = 'увеличение мощности заклинаний'
+            params += ['маг', str(char[3]), 'посох', '60', '15', '10', '20', '100', 'увеличение мощности заклинаний']
         elif char[2] == 4:
-            params[2] = 'вор'
-            params[3] = str(char[3])
-            params[4] = 'меч'
-            params[5] = '85'
-            params[6] = '35'
-            params[7] = '60'
-            params[8] = '60'
-            params[9] = '15'
-            params[10] = 'коварный удар игнорирующий доспех'
+            params += ['вор', str(char[3]), 'меч', '85', '35', '60', '60', '15', 'удары игнорируют доспехи']
+
     elif char[1] == 2:
-        params[1] = 'эльф'
+        params += ['эльф']
+
         if char[2] == 1:
-            params[2] = 'воин'
-            params[3] = str(char[3])
-            params[4] = 'эльфийская сабля'
-            params[5] = '90'
-            params[6] = '55'
-            params[7] = '15'
-            params[8] = '70'
-            params[9] = '30'
-            params[10] = 'кратковременно впадает в ярость'
+            params += [
+                'воин', str(char[3]), 'эльфийская сабля', '90', '15', '70', '30', 'кратковременно впадает в ярость']
         elif char[2] == 2:
-            params[2] = 'лучник'
-            params[3] = str(char[3])
-            params[4] = 'эльфийский лук'
-            params[5] = '90'
-            params[6] = '15'
-            params[7] = '75'
-            params[8] = '65'
-            params[9] = '20'
-            params[10] = 'серия метких выстрелов'
+            params += ['лучник', str(char[3]), 'эльфийский лук', '90', '15', '75', '65', '20', 'серия метких выстрелов']
         elif char[2] == 3:
-            params[2] = 'маг'
-            params[3] = str(char[3])
-            params[4] = 'посох'
-            params[5] = '70'
-            params[6] = '10'
-            params[7] = '10'
-            params[8] = '25'
-            params[9] = '130'
-            params[10] = 'увеличение мощности заклинаний'
+            params += ['маг', str(char[3]), 'посох', '70', '10', '10', '25', '130',  'увеличение мощности заклинаний']
+
     elif char[1] == 3:
-        params[1] = 'орк'
+        params += ['орк']
+
         if char[2] == 1:
-            params[2] = 'воин'
-            params[3] = str(char[3])
-            params[4] = 'меч'
-            params[5] = '130'
-            params[6] = '25'
-            params[7] = '35'
-            params[8] = '70'
-            params[9] = '0'
-            params[10] = 'кратковременно впадает в ярость'
+            params += ['воин', str(char[3]), 'меч', '130', '25', '35', '70', '0',  'кратковременно впадает в ярость']
         elif char[2] == 2:
-            params[2] = 'разведчик'
-            params[3] = str(char[3])
-            params[4] = 'метательный топор'
-            params[5] = '120'
-            params[6] = '10'
-            params[7] = '80'
-            params[8] = '65'
-            params[9] = '0'
-            params[10] = 'серия метких бросков'
+            params += [
+                'разведчик', str(char[3]), 'метательный топор', '120', '10', '80', '65', '0',  'серия метких бросков']
         elif char[2] == 3:
-            params[2] = 'шаман'
-            params[3] = str(char[3])
-            params[4] = 'тотем'
-            params[5] = '70'
-            params[6] = '5'
-            params[7] = '20'
-            params[8] = '25'
-            params[9] = '85'
-            params[10] = 'увеличение мощности заклинаний'
+            params += ['шаман', str(char[3]), 'тотем', '70', '5', '20', '25', '85',  'увеличение мощности заклинаний']
+
     elif char[1] == 4:
-        params[1] = 'гном'
+        params += ['гном']
+
         if char[2] == 1:
-            params[2] = 'воин'
-            params[3] = str(char[3])
-            params[4] = 'меч'
-            params[5] = '120'
-            params[6] = '70'
-            params[7] = '40'
-            params[8] = '60'
-            params[9] = '0'
-            params[10] = 'кратковременно впадает в ярость'
+            params += ['воин', str(char[3]), 'меч', '120', '70', '40', '60', '0',  'кратковременно впадает в ярость']
         elif char[2] == 2:
-            params[2] = 'копейщик'
-            params[3] = str(char[3])
-            params[4] = 'мететельное копье'
-            params[5] = '130'
-            params[6] = '24'
-            params[7] = '65'
-            params[8] = '65'
-            params[9] = '0'
-            params[10] = 'серия метких бросков'
+            params += [
+                'копейщик', str(char[3]), 'мететельное копье', '130', '24', '65', '65', '0',  'серия метких бросков']
+
     return params
 
 
