@@ -59,9 +59,11 @@ def run_game():
                 # создаем картинку выбора рассы, внеся изменения в готовую картинку
                 draw = Draw(canvas(race, pictures(5)), 5)
                 draw.draw()
-                race = Game(picture=pictures(4), text={'canvas2c': ' "1" - человек  "2" - эльф  "3" - орк  "4" - гном'})
-                draw = Draw(canvas(race.print_text(), pictures(5)), 5)  # рисуем картинку выбора рассы
+                draw = Draw(canvas(pictures(9)), 10)
                 draw.draw()
+                # race = Game(picture=pictures(4), text={'canvas2c': ' "1" - человек  "2" - эльф  "3" - орк  "4" - гном'})
+                # draw = Draw(canvas(race.print_text(), pictures(5)), 5)  # рисуем картинку выбора рассы
+                # draw.draw()
                 race_choice = Menu(1, 4, draw).check_choice()  # выбор рассы вашего персонажа
                 char_choice += [race_choice]
                 if race_choice == 2:
@@ -155,7 +157,7 @@ def run_game():
 
 
 if __name__ == '__main__':
-    init()
+    # init()
     run_game()
 
 
