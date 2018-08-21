@@ -25,6 +25,8 @@ def pictures(number):
         ('name_approved', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
         ('canvas_three', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
         ('menu_continue', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('param_character1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('param_character2', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
     ]
 
     skull = {
@@ -241,6 +243,51 @@ def pictures(number):
         'canvas2c': [' "1" - новое имя   "2" - вернуться в главное меню ', color[number][5], color[number][6], '', ],
     }
 
+    param_character1 = {
+        'canvas2a': ['══════════════', color[number][1], color[number][2], '', ],
+        'canvas2b': ['              ', color[number][3], color[number][4], '', ],
+        'canvas2c': ['     персонаж:', color[number][3], color[number][4], '', ],
+        'canvas2d': ['              ', color[number][3], color[number][4], '', ],
+        'canvas2e': ['          пол:', color[number][3], color[number][4], '', ],
+        'canvas2f': ['        расса:', color[number][3], color[number][4], '', ],
+        'canvas2g': ['        класс:', color[number][3], color[number][4], '', ],
+        'canvas2h': ['      возраст:', color[number][3], color[number][4], '', ],
+        'canvas2i': ['       оружие:', color[number][3], color[number][4], '', ],
+        'canvas2k': ['      здровье:', color[number][3], color[number][4], '', ],
+        'canvas2l': ['        броня:', color[number][3], color[number][4], '', ],
+        'canvas2m': ['         сила:', color[number][3], color[number][4], '', ],
+        'canvas2n': [' выносливасть:', color[number][3], color[number][4], '', ],
+        'canvas2o': ['        манна:', color[number][3], color[number][4], '', ],
+        'canvas2p': ['        ульта:', color[number][3], color[number][4], '', ],
+        'canvas2q': ['              ', color[number][3], color[number][4], '', ],
+        'canvas2r': ['══════════════', color[number][1], color[number][2], '', ],
+        'canvas4a': ['════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas4b': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4c': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4d': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4p': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4q': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4r': ['════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'frame1r': ['╚', '', '', '', ],
+        'frame2r': ['═', '', '', '', ],
+        'frame3r': ['╝\n', '', '', '', ],
+
+    }
+
+    param_character2 = {
+        'canvas4e': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4f': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4g': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4h': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4i': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4k': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4l': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4m': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4n': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4o': ['                                        ', color[number][5], color[number][6], '', ],
+        'canvas4p': ['                                        ', color[number][5], color[number][6], '', ],
+    }
+
     picture = {
         0: skull,
         1: cross,
@@ -253,6 +300,8 @@ def pictures(number):
         8: name_approved,
         9: canvas_three,
         10: menu_continue,
+        11: param_character1,
+        12: param_character2,
     }
 
     return picture[number]
