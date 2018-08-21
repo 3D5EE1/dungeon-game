@@ -25,8 +25,18 @@ def pictures(number):
         ('name_approved', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
         ('canvas_three', Fore.LIGHTCYAN_EX, Back.BLACK, Fore.LIGHTCYAN_EX, Back.BLACK, random_color2, Back.BLACK, '',),
         ('menu_continue', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
-        ('param_character1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
-        ('param_character2', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('param_character1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color4, Back.BLACK, '',),
+        ('param_character2', random_color0, Back.BLACK, random_color3, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('sex_choice1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
+        ('sex_choice2', random_color2, Back.BLACK, random_color1, Back.BLACK, random_color1, Back.BLACK, '',),
+        ('race_choice1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color4, Back.BLACK, '',),
+        ('race_class1', random_color3, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
+        ('race_class2', random_color1, Back.BLACK, random_color1, Back.BLACK, random_color1, Back.BLACK, '',),
+        ('race_class3', random_color2, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('race_class4', random_color3, Back.BLACK, random_color1, Back.BLACK, random_color0, Back.BLACK, '',),
+        ('race_class5', random_color1, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
+        ('age_choice1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('create_char', random_color4, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
     ]
 
     skull = {
@@ -129,7 +139,7 @@ def pictures(number):
     }
 
     del_5 = {
-        'canvas4a': [], 'canvas4b': [], 'canvas4c': [], 'canvas4d': [], 'canvas4e': [],
+        'canvas4a': [], 'canvas4b': [], 'canvas4c': [], 'canvas4d': [], 'canvas4e': [], 'canvas4f': [], 'canvas4g': [],
     }
 
     del_center_frame = {
@@ -279,7 +289,7 @@ def pictures(number):
         'canvas2r': ['════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas4a': ['════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas4b': ['                                        ', color[number][3], color[number][4], '', ],
-        'canvas4c': ['                                        ', color[number][3], color[number][4], '', ],
+        'canvas4c': ['                                        ', color[number][5], color[number][6], '', ],
         'canvas4d': ['                                        ', color[number][3], color[number][4], '', ],
         'canvas4p': ['                                        ', color[number][3], color[number][4], '', ],
         'canvas4q': ['                                        ', color[number][3], color[number][4], '', ],
@@ -304,6 +314,65 @@ def pictures(number):
         'canvas4p': ['                                        ', color[number][5], color[number][6], '', ],
     }
 
+    sex_choice1 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['         Выберите пол вашего персонажа!!!         ', color[number][5], color[number][6], '', ],
+    }
+
+    sex_choice2 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['           "1" - мужской  "2" - женский           ', color[number][5], color[number][6], '', ],
+    }
+
+    race_choice1 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['         Выберите рассу вашего персонажа!!!       ', color[number][5], color[number][6], '', ],
+    }
+
+    race_class1 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['         Выберите класс вашего персонажа!!!       ', color[number][5], color[number][6], '', ],
+    }
+
+    race_class2 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['      "1" - воин   "2" - лучник   "3" -  маг      ', color[number][5], color[number][6], '', ],
+    }
+
+    race_class3 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['   "1" - воин   "2" - разведчик    "3" - шаман    ', color[number][5], color[number][6], '', ],
+    }
+
+    race_class4 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['            "1" - воин  "2" - копейщик            ', color[number][5], color[number][6], '', ],
+    }
+
+    race_class5 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['  "1" - воин  "2" - лучник  "3" - маг  "4" - вор  ', color[number][5], color[number][6], '', ],
+    }
+
+    age_choice1 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': ['       Выберите возраст вашего персонажа!!!       ', color[number][5], color[number][6], '', ],
+    }
+
+    create_char = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': [' Вы создали своего персонажа!!!  "1" - продолжить ', color[number][5], color[number][6], '', ],
+        'canvas2e': [' "2" - статистика персонажа  "3" - на главно меню ', color[number][5], color[number][6], '', ],
+        'canvas2f': ['                                                  ', color[number][1], color[number][2], '', ],
+        'canvas2g': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'frame1e': ['║', '', '', '', ],
+        'frame2e': [' ', '', '', '', ],
+        'frame3e': ['║\n', '', '', '', ],
+        'frame1g': ['╚', '', '', '', ],
+        'frame2g': ['═', '', '', '', ],
+        'frame3g': ['╝\n', '', '', '', ],
+    }
+
     picture = {
         0: skull,
         1: cross,
@@ -318,6 +387,16 @@ def pictures(number):
         10: menu_continue,
         11: param_character1,
         12: param_character2,
+        13: sex_choice1,
+        14: sex_choice2,
+        15: race_choice1,
+        16: race_class1,
+        17: race_class2,
+        18: race_class3,
+        19: race_class4,
+        20: race_class5,
+        21: age_choice1,
+        22: create_char,
     }
 
     return picture[number]

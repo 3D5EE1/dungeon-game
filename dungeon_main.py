@@ -14,7 +14,7 @@ def run_game():
         draw.draw()
         menu_choice = Menu(1, 3, draw).check_choice()  # первый выбор, основное меню
         if menu_choice == 1:
-            name_choice, hero, char_name, enemy_name = None, True, None, None
+            name_choice, hero, char_name = None, True, None
             while hero:
                 draw = Draw(canvas(pictures(4), pictures(5)), 5)  # картинка ввода имени персонажа
                 draw.draw()
@@ -25,111 +25,76 @@ def run_game():
                 name_choice = Menu(1, 3, draw).check_choice()  # выбор подтверждения вашего имени
                 if name_choice == 1:  # выбор подтверждения вашего имени, вы согласны с именем
                     picture_name_approved = Game(picture=pictures(8), text={'canvas4c': char_name}).print_text()
-                    draw = Draw(canvas(picture_name_approved), 5)  # картинка если такое имя уже есть
+                    draw = Draw(canvas(picture_name_approved), 5)  # картинка, что такое имя уже есть
                     name = Game(draw_repeat=draw, name=char_name).save_new_game()  # проверяет наличие имени в save
+
                     if name is False:  # такое имя уже есть в save
-                        draw = Draw(canvas(pictures(4), pictures(5), pictures(10)), 5)  # рисует что имя есть
+                        draw = Draw(canvas(pictures(4), pictures(5), pictures(10)), 5)  # рисует выбор нового имени
                         draw.draw()
                         approved_name_choice = Menu(1, 2, draw).check_choice()  # либо новое имя либо вернуться в меню
+
                         if approved_name_choice == 1:  # если новое имя то цикл занова
                             pass
                         elif approved_name_choice == 2:  # возврат в главное меню
                             hero = False
                             name_choice = 3
+
                     elif name is True:  # если имени в save нет, будет создан персонаж
                         hero = False
+
                 elif name_choice == 2:  # выбор подтверждения вашего имени, вы не согласны с именем, цикл hero занова
                     pass
                 elif name_choice == 3:  # выбор подтверждения вашего имени, возврат в главное меню
                     hero = False
             if name_choice != 3:  # продолжаем создавать персонажа, выбираем пол
                 char_choice = []
-                sex = Game(picture=pictures(4),
-                           text={'canvas2c': '         Выберите пол вашего персонажа!!!'}).print_text()
-                # создаем картинку выбора пола, внеся изменения в готовую картинку
-                draw = Draw(canvas(sex, pictures(5)), 5)
-                draw.draw()
-                sex = Game(picture=pictures(4), text={'canvas2c': '           "1" - мужской  "2" - женский'})
-                draw = Draw(canvas(sex.print_text(), pictures(5)), 5)  # рисуем картинку выбора пола
+
+                Draw(canvas(pictures(4), pictures(5), pictures(13)), 5).draw()
+                draw = Draw(canvas(pictures(4), pictures(5), pictures(14)), 5)  # картинка выбора пола
                 draw.draw()
                 sex_choice = Menu(1, 2, draw).check_choice()  # выбор пола вашего персонажа
                 char_choice += [sex_choice]
-                race = Game(picture=pictures(4),
-                            text={'canvas2c': '         Выберите рассу вашего персонажа!!!'}).print_text()
-                # создаем картинку выбора рассы, внеся изменения в готовую картинку
-                draw = Draw(canvas(race, pictures(5)), 5)
+
+                Draw(canvas(pictures(4), pictures(5), pictures(15)), 5).draw()
+                draw = Draw(canvas(pictures(9)), 10)  # картинка выбора рассы
                 draw.draw()
-                draw = Draw(canvas(pictures(9)), 10)
-                draw.draw()
-                # race = Game(picture=pictures(4), text={'canvas2c': ' "1" - человек  "2" - эльф  "3" - орк  "4" - гном'})
-                # draw = Draw(canvas(race.print_text(), pictures(5)), 5)  # рисуем картинку выбора рассы
-                # draw.draw()
                 race_choice = Menu(1, 4, draw).check_choice()  # выбор рассы вашего персонажа
                 char_choice += [race_choice]
+
                 if race_choice == 2:
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '         Выберите класс вашего персонажа!!!'}).print_text()
-                    # создаем картинку выбора класса, внеся изменения в готовую картинку
-                    draw = Draw(canvas(race_class, pictures(5)), 5)
-                    draw.draw()
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '      "1" - воин   "2" - лучник   "3" -  маг'})
-                    draw = Draw(canvas(race_class.print_text(), pictures(5)), 5)  # рисуем картинку выбора класса
+                    Draw(canvas(pictures(4), pictures(5), pictures(16)), 5).draw()
+                    draw = Draw(canvas(pictures(4), pictures(5), pictures(17)), 5)  # картинка выбора класса эльфа
                     draw.draw()
                     class_choice = Menu(1, 3, draw).check_choice()  # выбор класса вашего персонажа
                     char_choice += [class_choice]
+
                 elif race_choice == 3:
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '         Выберите класс вашего персонажа!!!'}).print_text()
-                    # создаем картинку выбора класса, внеся изменения в готовую картинку
-                    draw = Draw(canvas(race_class, pictures(5)), 5)
-                    draw.draw()
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '   "1" - воин   "2" - разведчик    "3" - шаман'})
-                    draw = Draw(canvas(race_class.print_text(), pictures(5)), 5)  # рисуем картинку выбора класса
-                    draw.draw()
+                    Draw(canvas(pictures(4), pictures(5), pictures(16)), 5).draw()
+                    draw = Draw(canvas(pictures(4), pictures(5), pictures(18)), 5)  # картинка выбора класса орка
+                    draw.draw()  # рисуем картинку выбора класса
                     class_choice = Menu(1, 3, draw).check_choice()  # выбор класса вашего персонажа
                     char_choice += [class_choice]
+
                 elif race_choice == 4:
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '         Выберите класс вашего персонажа!!!'}).print_text()
-                    # создаем картинку выбора класса, внеся изменения в готовую картинку
-                    draw = Draw(canvas(race_class, pictures(5)), 5)
-                    draw.draw()
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '            "1" - воин  "2" - копейщик'})
-                    draw = Draw(canvas(race_class.print_text(), pictures(5)), 5)  # рисуем картинку выбора класса
+                    Draw(canvas(pictures(4), pictures(5), pictures(16)), 5).draw()
+                    draw = Draw(canvas(pictures(4), pictures(5), pictures(19)), 5)  # картинка выбора класса гнома
                     draw.draw()
                     class_choice = Menu(1, 2, draw).check_choice()  # выбор класса вашего персонажа
                     char_choice += [class_choice]
+
                 else:
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '         Выберите класс вашего персонажа!!!'}).print_text()
-                    # создаем картинку выбора класса, внеся изменения в готовую картинку
-                    draw = Draw(canvas(race_class, pictures(5)), 5)
-                    draw.draw()
-                    race_class = Game(picture=pictures(4),
-                                      text={'canvas2c': '  "1" - воин  "2" - лучник  "3" - маг  "4" - вор'})
-                    draw = Draw(canvas(race_class.print_text(), pictures(5)), 5)  # рисуем картинку выбора класса
+                    Draw(canvas(pictures(4), pictures(5), pictures(16)), 5).draw()
+                    draw = Draw(canvas(pictures(4), pictures(5), pictures(20)), 5)  # картинка выбора класса человека
                     draw.draw()
                     class_choice = Menu(1, 4, draw).check_choice()  # выбор класса вашего персонажа
                     char_choice += [class_choice]
 
-                race_class = Game(picture=pictures(4),
-                                  text={'canvas2c': '       Выберите возраст вашего персонажа!!!'}).print_text()
-                # создаем картинку выбора класса, внеся изменения в готовую картинку
-                draw = Draw(canvas(race_class, pictures(5)), 5)
+                draw = Draw(canvas(pictures(4), pictures(5), pictures(21)), 5)  # картинка возраста персонажа
                 draw.draw()
                 age_choice = Menu(20, 100, draw).check_choice()  # выбор возраста вашего персонажа
                 char_choice += [age_choice]
-                char = Game(picture=pictures(4),
-                            text={'canvas2c': ' Вы создали своего персонажа!!!  "1" - продолжить '}).print_text()
-                # создаем картинку выбора рассы, внеся изменения в готовую картинку
-                draw = Draw(canvas(char, pictures(5)), 5)
-                draw.draw()
-                char = Game(picture=pictures(4),
-                            text={'canvas2c': ' "2" - статистика персонажа  "3" - на главно меню'})
-                draw = Draw(canvas(char.print_text(), pictures(5)), 5)  # рисуем картинку выбора рассы
+
+                draw = Draw(canvas(pictures(4), pictures(5), pictures(22)), 7)
                 draw.draw()
                 params_choice = Menu(1, 3, draw).check_choice()  # выбор параметров персонажа
                 if params_choice == 1:
@@ -141,7 +106,7 @@ def run_game():
                     picture_params2 = Game(picture=pictures(12), text=params).print_text()
                     draw = Draw(canvas(picture_params1, picture_params2), 17)
                     draw.draw()
-                    print('на этом пока все, ждите продолжения\nдля выхода нажмине "1", для продолжения "2"')
+                    print('\nна этом пока все, ждите продолжения\nдля выхода нажмине "1", для продолжения "2"')
                     params_choice = Menu(1, 2, draw).check_choice()
                     if params_choice == 1:
                         run = game_exit()
@@ -157,7 +122,7 @@ def run_game():
 
 
 if __name__ == '__main__':
-    # init()
+    init()
     run_game()
 
 
