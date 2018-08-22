@@ -181,7 +181,7 @@ class Draw:
     def window_size(self):
         """задает размер окна в windows терминале(нужен при компиляции)"""
         os.system(f"mode con cols={self.canvas_size()[0]} "
-                  f"lines={int(len(self.picture[2]) / self.canvas_size()[2] + 5)}")
+                  f"lines={int(len(self.picture[2]) / self.canvas_size()[2] + 10)}")
 
 
 if __name__ == '__main__':

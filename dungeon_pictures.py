@@ -377,7 +377,6 @@ def pictures(number):
     }
 
     create_enemy = {
-        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas2b': ['                                                  ', color[number][1], color[number][2], '', ],
         'canvas2c': ['    Вы можете так же создать своего противника    ', color[number][5], color[number][6], '', ],
         'canvas2d': ['                                                  ', color[number][1], color[number][2], '', ],
@@ -385,7 +384,6 @@ def pictures(number):
     }
 
     create_enemy1 = {
-        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas2b': ['                                                  ', color[number][1], color[number][2], '', ],
         'canvas2c': ['        Вы можете создать еще противников         ', color[number][5], color[number][6], '', ],
         'canvas2d': ['                                                  ', color[number][1], color[number][2], '', ],
