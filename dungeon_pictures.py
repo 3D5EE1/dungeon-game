@@ -37,6 +37,9 @@ def pictures(number):
         ('race_class5', random_color1, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
         ('age_choice1', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
         ('create_char', random_color4, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('create_enemy', random_color1, Back.BLACK, random_color2, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('create_enemy1', random_color1, Back.BLACK, random_color3, Back.BLACK, random_color4, Back.BLACK, '',),
+        ('enemy_menu', random_color1, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
     ]
 
     skull = {
@@ -362,7 +365,7 @@ def pictures(number):
     create_char = {
         'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'canvas2c': [' Вы создали своего персонажа!!!  "1" - продолжить ', color[number][5], color[number][6], '', ],
-        'canvas2e': [' "2" - статистика персонажа  "3" - на главно меню ', color[number][5], color[number][6], '', ],
+        'canvas2e': [' "2" - статистика персонажа  "3" - в главное меню ', color[number][5], color[number][6], '', ],
         'canvas2f': ['                                                  ', color[number][1], color[number][2], '', ],
         'canvas2g': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
         'frame1e': ['║', '', '', '', ],
@@ -371,6 +374,27 @@ def pictures(number):
         'frame1g': ['╚', '', '', '', ],
         'frame2g': ['═', '', '', '', ],
         'frame3g': ['╝\n', '', '', '', ],
+    }
+
+    create_enemy = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2b': ['                                                  ', color[number][1], color[number][2], '', ],
+        'canvas2c': ['    Вы можете так же создать своего противника    ', color[number][5], color[number][6], '', ],
+        'canvas2d': ['                                                  ', color[number][1], color[number][2], '', ],
+        'canvas2e': [' "1" - создать противника   "2" - продолжить игру ', color[number][5], color[number][6], '', ],
+    }
+
+    create_enemy1 = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2b': ['                                                  ', color[number][1], color[number][2], '', ],
+        'canvas2c': ['        Вы можете создать еще противников         ', color[number][5], color[number][6], '', ],
+        'canvas2d': ['                                                  ', color[number][1], color[number][2], '', ],
+        'canvas2e': [' "1" - создать противника   "2" - продолжить игру ', color[number][5], color[number][6], '', ],
+    }
+
+    enemy_menu = {
+        'canvas2a': ['══════════════════════════════════════════════════', color[number][1], color[number][2], '', ],
+        'canvas2c': [' В меню статистики вы сможете создать протикников ', color[number][5], color[number][6], '', ],
     }
 
     picture = {
@@ -397,6 +421,9 @@ def pictures(number):
         20: race_class5,
         21: age_choice1,
         22: create_char,
+        23: create_enemy,
+        24: create_enemy1,
+        25: enemy_menu
     }
 
     return picture[number]

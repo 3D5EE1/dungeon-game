@@ -5,10 +5,74 @@ import json
 """save_hero = {'name':
 ['пол', 'расса', 'класс', 'возраст', 'оружие', 'здровье', 'броня', 'сила', 'выносливасть', 'манна', 'ульта']}"""
 
-save_file = {
+save_file = {}
+
+enemy_file = {
     'Гарош': ['мужская особь', 'орк', 'воин', 'среднего возраста', 'массивный топор', 100, 30, 25, 60, 0,
               'кратковременно впадает в ярость, незначительно увеличиваются все показатели'],
 }
+
+
+def enemy_save():
+    try:
+        with open('save.txt', 'x') as save:
+            save.write(json.dumps(enemy_file))
+    except FileExistsError:
+        pass
+
+
+def new_enemy():
+    try:
+        print(Fore.LIGHTYELLOW_EX + 'Вам необходимо ввести информация по вашему противнику,\n'
+              'мы ни как не будем  вас ограничивать, можете  проявить\n'
+              'фантазию,  но помните от того  какие данные вы введете\n'
+              'будет зависить то с кем вам предстаит сражаться.\n'
+              'Помните, что показатель здровья, силы, брони, возраста\n'
+              'выносливости и манны являются числовыми значениями.\n'
+              'В имени не должно быть цифр.\n', Fore.GREEN)
+        name = str(input('имя персонажа: ')).capitalize()
+        if name.isalpha() is False:
+            raise ValueError
+        with open('save.txt', 'r') as save:
+            characters = json.loads(save.read())
+        with open('enemy.txt', 'r') as save:
+            enemy_characters = json.loads(save.read())
+        if name in characters or name in enemy_characters:
+            raise TypeError
+        else:
+            enemy = []
+            enemy += [str(input('пол: '))]
+            enemy += [str(input('расса: '))]
+            enemy += [str(input('класс: '))]
+            val = int(input('возраст: '))
+            enemy += [str(val)]
+            enemy += [str(input('оружие: '))]
+            val = int(input('здровье: '))
+            enemy += [str(val)]
+            val = int(input('броня: '))
+            enemy += [str(val)]
+            val = int(input('сила: '))
+            enemy += [str(val)]
+            val = int(input('выносливасть: '))
+            enemy += [str(val)]
+            val = int(input('манна: '))
+            enemy += [str(val)]
+            enemy += [str(input('ульта: '))]
+            print()
+            enemy_characters[name] = enemy
+            with open('enemy.txt', 'w') as save_game:
+                save_game.write(json.dumps(enemy_characters))
+            return True
+    except ValueError:
+        cls()
+        print(Fore.LIGHTRED_EX + 'Вы   допустили  ошибку  при  вводе  данных,  прочтите \n'
+                                 'внимательно условие!\n')
+        return False
+    except TypeError:
+        cls()
+        print(Fore.LIGHTRED_EX + 'Увы,  но персонаж с таким именем уже есть,  попробуйте \n'
+                                 'снова!!!\n')
+        return False
 
 
 def char_params(char):
@@ -113,7 +177,7 @@ class Game:
         with open('save.txt', 'r') as save:
             characters = json.loads(save.read())  # загружает фаил
             if self.name and self.params:
-                characters[self.name] += [self.params]
+                characters[self.name] += self.params
                 with open('save.txt', 'w') as save_game:
                     save_game.write(json.dumps(characters))
             elif self.name in characters:
@@ -133,6 +197,13 @@ class Game:
         except FileExistsError:  # если файл уже есть
             return self.save()
 
+    def enemy_save(self):
+        try:
+            with open('enemy.txt', 'x') as save:
+                save.write(json.dumps(enemy_file))
+        except FileExistsError:
+            pass
+
     # def change_draw(self):
     #
     #     for i in range(len(self.new_picture)):
@@ -145,15 +216,16 @@ class Game:
 
 
 if __name__ == '__main__':
-    from dungeon_draw import Draw, canvas
-    from dungeon_pictures import pictures
-
-    char_choice = {'canvas4c': 'женщина', 'canvas4e': 'эльф', 'canvas4f': 'лучник', 'canvas4g': 23, 'canvas4h': 'эльфийский лук', 'canvas4i': 90, 'canvas4k': 15, 'canvas4l': 75, 'canvas4m': 65, 'canvas4n': 20, 'canvas4o': 'серия метких выстрелов'}
-
-
-    params = params_char(pictures(12), char_params([1, 2, 2, 44]))
-    print(params)
-    picture_params = Game(picture=pictures(12), text=params).print_text()
-    print(picture_params)
-    draw = Draw(canvas(pictures(11), picture_params), 17)
-    draw.draw()
+    # from dungeon_draw import Draw, canvas
+    # from dungeon_pictures import pictures
+    #
+    # char_choice = {'canvas4c': 'женщина', 'canvas4e': 'эльф', 'canvas4f': 'лучник', 'canvas4g': 23, 'canvas4h': 'эльфийский лук', 'canvas4i': 90, 'canvas4k': 15, 'canvas4l': 75, 'canvas4m': 65, 'canvas4n': 20, 'canvas4o': 'серия метких выстрелов'}
+    #
+    #
+    # params = params_char(pictures(12), char_params([1, 2, 2, 44]))
+    # print(params)
+    # picture_params = Game(picture=pictures(12), text=params).print_text()
+    # print(picture_params)
+    # draw = Draw(canvas(pictures(11), picture_params), 17)
+    # draw.draw()
+        print(new_enemy())
