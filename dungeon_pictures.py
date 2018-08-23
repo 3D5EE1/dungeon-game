@@ -15,8 +15,8 @@ def pictures(number):
 
     color = [
         ('skull', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
-        ('cross', random_color0, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
-        ('text1', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', '', ),
+        ('cross', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
+        ('text1', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '', '', ),
         ('add_4_canvas', Fore.LIGHTCYAN_EX, Back.BLACK, random_color1, Back.BLACK, random_color2, Back.BLACK, '', ),
         ('name_hero', random_color0, Back.BLACK, random_color3, Back.BLACK, random_color4, Back.BLACK, '', ),
         ('del_5', '', '', '', '', '', '', '', ),
@@ -40,6 +40,8 @@ def pictures(number):
         ('create_enemy', random_color1, Back.BLACK, random_color2, Back.BLACK, random_color2, Back.BLACK, '',),
         ('create_enemy1', random_color1, Back.BLACK, random_color3, Back.BLACK, random_color4, Back.BLACK, '',),
         ('enemy_menu', random_color1, Back.BLACK, random_color1, Back.BLACK, random_color3, Back.BLACK, '',),
+        ('headstart', Fore.LIGHTCYAN_EX, Back.BLACK, random_color2, Back.BLACK, random_color2, Back.BLACK, '',),
+        ('head', Fore.LIGHTCYAN_EX, Back.BLACK, random_color2, Back.BLACK, random_color2, Back.BLACK, '',),
     ]
 
     skull = {
@@ -87,8 +89,7 @@ def pictures(number):
     text1 = {
         'canvas4f': ['           Добро пожаловать в подземелье              ', color[number][5], color[number][6], ''],
         'canvas4k': ['                 "1" - новая игра                     ', color[number][5], color[number][6], ''],
-        'canvas4l': ['                 "2" - продолжить                     ', color[number][5], color[number][6], ''],
-        'canvas4m': ['                 "3" - выйти                          ', color[number][5], color[number][6], ''],
+        'canvas4m': ['                 "2" - продолжить                     ', color[number][5], color[number][6], ''],
         'canvas4t': ['                                              (c)rypy ', Fore.BLUE, color[number][6], '', ],
     }
 
@@ -395,6 +396,23 @@ def pictures(number):
         'canvas2c': [' В меню статистики вы сможете создать протикников ', color[number][5], color[number][6], '', ],
     }
 
+    headstart = {
+         'frame1a': ['╔', Fore.LIGHTCYAN_EX, '', '', ],
+         'frame3a': ['╗\n', '', '', '', ],
+         'canvas2b': ['          "6" - загрузить игру       "7" - в', color[number][3], color[number][4], '', ],
+         'frame2b': ['ы', color[number][3], color[number][4], '', ],
+         'canvas4b': ['йти в главное меню       "8" - выйти из игры          ', color[number][3], color[number][4], '',
+                      ],
+    }
+
+    head = {
+         'frame1a': ['╔', Fore.LIGHTCYAN_EX, '', '', ],
+         'frame3a': ['╗\n', '', '', '', ],
+         'canvas2b': ['    "5" - сохранить     "6" - загрузить     ', color[number][3], color[number][4], '', ],
+         'canvas4b': ['"7" - выйти в главное меню     "8" - выйти из игры    ', color[number][3], color[number][4], '',
+                      ],
+    }
+
     picture = {
         0: skull,
         1: cross,
@@ -421,7 +439,9 @@ def pictures(number):
         22: create_char,
         23: create_enemy,
         24: create_enemy1,
-        25: enemy_menu
+        25: enemy_menu,
+        26: headstart,
+        27: head
     }
 
     return picture[number]

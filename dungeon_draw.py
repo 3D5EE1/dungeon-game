@@ -38,8 +38,8 @@ def canvas(fragment=None, add=None, change=None):
                              -третьим, фон поля."""
 
     original_picture = \
-        {'frame1a': '╔', 'canvas1a': '', 'canvas2a': '════════════════════════════════════════════', 'canvas3a': '',
-         'frame2a': '═', 'canvas4a': '══════════════════════════════════════════════════════', 'frame3a': '╗\n',
+        {'frame1a': '╠', 'canvas1a': '', 'canvas2a': '════════════════════════════════════════════', 'canvas3a': '',
+         'frame2a': '═', 'canvas4a': '══════════════════════════════════════════════════════', 'frame3a': '╣\n',
          'frame1b': '║', 'canvas1b': '', 'canvas2b': '                                            ', 'canvas3b': '',
          'frame2b': ' ', 'canvas4b': '                                                      ', 'frame3b': '║\n',
          'frame1c': '║', 'canvas1c': '', 'canvas2c': '                                            ', 'canvas3c': '',
