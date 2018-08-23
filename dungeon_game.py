@@ -44,19 +44,13 @@ def new_enemy():
             enemy += [str(input('пол: '))]
             enemy += [str(input('расса: '))]
             enemy += [str(input('класс: '))]
-            val = int(input('возраст: '))
-            enemy += [str(val)]
+            enemy += [str(int(input('возраст: ')))]
             enemy += [str(input('оружие: '))]
-            val = int(input('здровье: '))
-            enemy += [str(val)]
-            val = int(input('броня: '))
-            enemy += [str(val)]
-            val = int(input('сила: '))
-            enemy += [str(val)]
-            val = int(input('выносливасть: '))
-            enemy += [str(val)]
-            val = int(input('манна: '))
-            enemy += [str(val)]
+            enemy += [str(int(input('здровье: ')))]
+            enemy += [str(int(input('броня: ')))]
+            enemy += [str(int(input('сила: ')))]
+            enemy += [str(int(input('выносливасть: ')))]
+            enemy += [str(int(input('манна: ')))]
             enemy += [str(input('ульта: '))]
             print()
             enemy_characters[name] = enemy
@@ -219,7 +213,9 @@ if __name__ == '__main__':
     # from dungeon_draw import Draw, canvas
     # from dungeon_pictures import pictures
     #
-    # char_choice = {'canvas4c': 'женщина', 'canvas4e': 'эльф', 'canvas4f': 'лучник', 'canvas4g': 23, 'canvas4h': 'эльфийский лук', 'canvas4i': 90, 'canvas4k': 15, 'canvas4l': 75, 'canvas4m': 65, 'canvas4n': 20, 'canvas4o': 'серия метких выстрелов'}
+    # char_choice = {'canvas4c': 'женщина', 'canvas4e': 'эльф', 'canvas4f': 'лучник', 'canvas4g': 23,
+    # 'canvas4h': 'эльфийский лук', 'canvas4i': 90, 'canvas4k': 15, 'canvas4l': 75, 'canvas4m': 65, 'canvas4n': 20,
+    # 'canvas4o': 'серия метких выстрелов'}
     #
     #
     # params = params_char(pictures(12), char_params([1, 2, 2, 44]))

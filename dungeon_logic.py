@@ -1,7 +1,7 @@
 from dungeon_draw import Draw, cls
+from dungeon_game import Game, params_char
 from colorama import init, Fore, Back, Style
-import time
-import os
+import time, json, os
 
 
 class Menu:
