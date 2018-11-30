@@ -90,6 +90,7 @@ def pictures(number):
         'canvas4f': ['           Добро пожаловать в подземелье              ', color[number][5], color[number][6], ''],
         'canvas4k': ['                 "1" - новая игра                     ', color[number][5], color[number][6], ''],
         'canvas4m': ['                 "2" - продолжить                     ', color[number][5], color[number][6], ''],
+        'canvas4o': ['                 "3" - выход                          ', color[number][5], color[number][6], ''],
         'canvas4t': ['                                              (c)rypy ', Fore.BLUE, color[number][6], '', ],
     }
 
